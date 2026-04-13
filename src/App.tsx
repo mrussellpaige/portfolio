@@ -344,7 +344,7 @@ export default function App() {
         .heroImageWrap { display: flex; justify-content: center; }
         .heroImageFrame { position: relative; width: 100%; max-width: 400px; }
         .heroImage { width: 100%; height: 280px; object-fit: cover; border-radius: 18px; display: block; }
-        .heroArrow { position: absolute; top: 15px; left: 13%; width: 140px; transform: translateX(-50%, 10%); }
+        .heroArrow { position: absolute; top: 17px; left: 13%; width: 140px; transform: translateX(-50%, 10%); }
         .section { max-width: 1100px; margin: 0 auto; padding: 0 20px 32px; }
         .panel { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
         .panel.leftAlign { text-align: left; }
