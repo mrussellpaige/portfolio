@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import PortfolioWebsiteStarter from "./App";
+import "./styles.css";
 
-// Your existing code goes here
-
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/* Your main component goes here */}
-  </React.StrictMode>,
-  document.getElementById('root')
+    <PortfolioWebsiteStarter />
+  </React.StrictMode>
 );
