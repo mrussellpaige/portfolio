@@ -9,42 +9,31 @@ type Page =
 
 type Project = {
   title: string;
-  category: string;
   summary: string;
-  impact: string;
   tags: string[];
-  page?: Page;
+  page: Exclude<Page, "home" | "resume">;
 };
 
 const projects: Project[] = [
   {
     title: "AI-Powered Client Reporting",
-    category: "Case Study",
     summary:
-      "Led qualitative research with financial advisors to identify pain points in client report generation and explore how AI could enhance the experience. Conducted 1:1 moderated sessions across user segments and tested two early concepts to understand trust, usability, and value of AI-driven recommendations.",
-    impact:
-      "Influenced product direction toward explainable AI recommendations and Concept A design approach",
-    tags: ["User Research", "AI/UX", "Strategy", "Financial Services"],
+      "Qualitative research with financial advisors to identify reporting pain points and explore where AI recommendations could add value.",
+    tags: ["User Research", "AI/UX", "Financial Services"],
     page: "case-study-ai",
   },
   {
     title: "Account Opening End-to-End Workflow Research",
-    category: "Case Study",
     summary:
-      "Led 3 rounds of research across foundational interviews, guerilla concept testing, and usability validation to redesign the attestations and IM pre-acceptance experience.",
-    impact:
-      "Drove centralized attestations strategy and improved workflow efficiency across multiple sprints",
-    tags: ["User Research", "Workflow Design", "0→1", "Financial Services"],
+      "Multi-phase workflow research across foundational interviews, guerilla testing, and usability validation.",
+    tags: ["User Research", "Workflow Design", "Financial Services"],
     page: "case-study-attestations",
   },
   {
     title: "Swaydle Discovery Research",
-    category: "Case Study",
     summary:
-      "Multi-phase research exploring user needs, workflow friction, and experience design opportunities across a complex system.",
-    impact:
-      "Informed product direction and aligned cross-functional stakeholders",
-    tags: ["User Research", "Journey Mapping", "Strategy", "Start Up"],
+      "Startup discovery research to validate demand, shape the MVP, and inform product strategy for a baby gear rental service.",
+    tags: ["User Research", "Journey Mapping", "Start Up"],
     page: "case-study-3",
   },
 ];
@@ -58,509 +47,215 @@ const skills = [
   "Research Leadership",
 ];
 
+function Tag({ children }: { children: React.ReactNode }) {
+  return <span className="tag">{children}</span>;
+}
+
+function BackNav({ onHome, onAbout }: { onHome: () => void; onAbout: () => void }) {
+  return (
+    <div className="subnav">
+      <button type="button" className="textLink" onClick={onHome}>
+        ← Back to portfolio
+      </button>
+      <button type="button" className="textLink" onClick={onAbout}>
+        About
+      </button>
+    </div>
+  );
+}
+
 export default function App() {
   const [page, setPage] = useState<Page>("home");
+  const [password, setPassword] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === "research2026") {
+      setAuthenticated(true);
+    }
+  };
 
   const renderHome = () => (
     <>
-      <section className="section">
-        <div className="card strengths-card">
-          <div className="strengths-layout">
-            <div className="strengths-title-wrap">
-              <h2 className="eyebrow">Core strengths</h2>
-            </div>
-            <div className="strengths-pills">
-              {skills.map((skill) => (
-                <span key={skill} className="pill pill-outline">
-                  {skill}
-                </span>
-              ))}
+      <section className="hero">
+        <div className="topbar">
+          <button type="button" className="brandButton" onClick={() => setPage("home")}>
+            Melissa Russell Paige
+          </button>
+
+          <nav className="nav">
+            <button
+              type="button"
+              className={page === "home" ? "navLink active" : "navLink"}
+              onClick={() => setPage("home")}
+            >
+              Work
+            </button>
+            <button
+              type="button"
+              className={page === "resume" ? "navLink active" : "navLink"}
+              onClick={() => setPage("resume")}
+            >
+              About
+            </button>
+          </nav>
+        </div>
+
+        <div className="heroGrid">
+          <div className="heroCopy">
+            <h1>Hello! I&apos;m Melissa.</h1>
+            <p>
+              I am curious about how people move through experiences where digital and
+              physical spaces intersect. After years in advertising and running my own
+              startup, I transitioned into UX research.
+            </p>
+            <p>
+              <strong>With over a decade of experience</strong>, I bring a strategic,
+              end-to-end perspective to understanding users and shaping meaningful
+              product experiences.
+            </p>
+            <button type="button" className="primaryButton" onClick={() => setPage("resume")}>
+              Learn more
+            </button>
+          </div>
+
+          <div className="heroImageWrap">
+            <div className="heroImageFrame">
+              <img src="/melissa-hero.jpg" alt="Melissa Russell Paige" className="heroImage" />
+              <svg className="heroArrow" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                <path
+                  d="M20 20 C 120 0, 120 140, 100 160"
+                  stroke="#F59E0B"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
+                <polygon points="95,150 110,165 90,165" fill="#F59E0B" />
+              </svg>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects" className="section projects-section">
-        <div>
-          <h2 className="section-title">Selected work</h2>
-          <p className="section-subtitle">
+      <section className="section">
+        <div className="panel">
+          <p className="eyebrow">Core strengths</p>
+          <div className="tagRow">
+            {skills.map((skill) => (
+              <Tag key={skill}>{skill}</Tag>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="sectionHeader">
+          <h2>Selected work</h2>
+          <p>
             A selection of research projects spanning AI, workflow redesign, and
-            complex internal systems.
+            startup discovery.
           </p>
         </div>
 
-        <div className="project-grid">
+        <div className="projectGrid">
           {projects.map((project) => (
-            <article key={project.title} className="card project-card">
-              <p className="card-eyebrow">{project.category}</p>
-              <h3 className="card-title">{project.title}</h3>
-              <p className="card-copy">{project.summary}</p>
-              <p className="card-impact">{project.impact}</p>
-
-              <div className="tag-row">
+            <article key={project.title} className="card">
+              <p className="eyebrow">Case Study</p>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+              <div className="tagRow compact">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
+                  <Tag key={tag}>{tag}</Tag>
                 ))}
               </div>
-
-              {project.page ? (
-                <button
-                  type="button"
-                  onClick={() => setPage(project.page)}
-                  className="link-button"
-                >
-                  View case study
-                </button>
-              ) : (
-                <span className="muted-note">Case study coming soon</span>
-              )}
+              <button type="button" className="textLink strong" onClick={() => setPage(project.page)}>
+                View case study
+              </button>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="cta-section">
-        <h2 className="cta-title">Let&apos;s work together</h2>
-        <p className="cta-copy">
+      <section className="ctaSection">
+        <h2>Let&apos;s work together</h2>
+        <p>
           I&apos;m always open to new opportunities, collaborations, or just chatting
           about research and product.
         </p>
-        <div className="cta-button-wrap">
-          <a href="mailto:mrussellpaige@gmail.com" className="cta-button">
-            Reach out →
-          </a>
-        </div>
-        <p className="cta-email">mrussellpaige@gmail.com</p>
+        <a className="ctaButton" href="mailto:mrussellpaige@gmail.com">
+          Reach out →
+        </a>
+        <div className="emailLine">mrussellpaige@gmail.com</div>
       </section>
     </>
   );
 
-  const renderCaseStudyAI = () => (
-    <section className="case-study-section">
-      <div className="subnav">
-        <button type="button" onClick={() => setPage("home")} className="subnav-link">
-          ← Back to portfolio
-        </button>
-        <button type="button" onClick={() => setPage("resume")} className="subnav-link">
-          About
-        </button>
-      </div>
-
-      <div className="case-study-shell">
-        <p className="case-study-label">Case Study</p>
-        <h2 className="case-study-title">AI-Powered Client Reporting</h2>
-        <p className="case-study-intro">
-          End-to-end user research to explore how AI can improve financial
-          advisor report generation and client conversations.
-        </p>
-
-        <div className="stats-grid">
-          <div><p className="stat-label">Role</p><p>UX Researcher</p></div>
-          <div><p className="stat-label">Methods</p><p>Moderated interviews, concept testing</p></div>
-          <div><p className="stat-label">Participants</p><p>6 advisors across roles and usage levels</p></div>
-        </div>
-
-        <div className="case-study-stack">
-          <section>
-            <h3 className="section-heading">Problem</h3>
-            <p>
-              Financial advisors rely on client review reports to prepare for
-              meetings, but the process is time-consuming, inflexible, and
-              difficult to tailor for complex client scenarios. There was also
-              an open question around how AI could meaningfully support this
-              workflow without reducing trust.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Goals</h3>
-            <ul className="bullet-list">
-              <li>Understand key pain points in report creation and meetings</li>
-              <li>Identify where AI could add value in the workflow</li>
-              <li>Determine how AI recommendations should be delivered and explained</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Methods</h3>
-            <p>
-              Conducted six moderated 1:1 interviews across analysts,
-              associate bankers, and a VP banker. I tested two low-fidelity
-              concepts to evaluate reactions to AI-driven recommendations,
-              including where recommendations should appear and what information
-              users needed to trust them.
-            </p>
-            <div className="image-grid">
-              <figure className="image-card">
-                <div className="image-card-label">Concept A</div>
-                <div className="placeholder-image">Add Concept A image here</div>
-              </figure>
-              <figure className="image-card">
-                <div className="image-card-label">Concept B</div>
-                <div className="placeholder-image">Add Concept B image here</div>
-              </figure>
-            </div>
-            <p className="supporting-copy">
-              These concepts were used to probe how and where AI recommendations
-              should appear, and what level of transparency users needed to
-              trust them.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Key Insights</h3>
-            <ul className="bullet-list">
-              <li><strong>Core pain points were operational.</strong> Advisors struggled with bugs, limited customization, missing formatting controls, and difficulty handling complex client structures.</li>
-              <li><strong>AI was seen as a quality amplifier.</strong> Participants felt AI could help them create stronger, sharper reports and surface more thoughtful talking points for client meetings.</li>
-              <li><strong>Trust depended on explainability.</strong> Advisors consistently wanted a clear why behind each recommendation, making transparency critical for adoption.</li>
-              <li><strong>Human judgment remained essential.</strong> Some participants wanted to review AI suggestions with a banker before including them, showing that confidence and collaboration were central to adoption.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Impact</h3>
-            <p>
-              This research helped shape product direction by supporting a
-              concept that integrated recommendations into the workflow, rather
-              than presenting them as disconnected AI outputs. It also clarified
-              that personalization needed to account for client data, advisor
-              preferences, prior reports, and internal context.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Next Steps</h3>
-            <p>
-              Partnered with design and product to further develop the preferred
-              concept and define the inputs AI should consider when generating
-              recommendations.
-            </p>
-          </section>
-        </div>
-      </div>
-    </section>
-  );
-
-  const renderCaseStudyAttestations = () => (
-    <section className="case-study-section">
-      <div className="subnav">
-        <button type="button" onClick={() => setPage("home")} className="subnav-link">
-          ← Back to portfolio
-        </button>
-        <button type="button" onClick={() => setPage("resume")} className="subnav-link">
-          About
-        </button>
-      </div>
-
-      <div className="case-study-shell">
-        <p className="case-study-label">Case Study</p>
-        <h2 className="case-study-title">Account Opening End-to-End Workflow Research</h2>
-        <p className="case-study-intro">
-          Led a multi-phase research program across discovery, concept
-          validation, and usability testing to redesign a complex account
-          opening workflow used by analysts, bankers, and investors.
-        </p>
-
-        <div className="stats-grid">
-          <div><p className="stat-label">Role</p><p>UX Research Lead</p></div>
-          <div><p className="stat-label">Methods</p><p>Interviews, guerilla testing, usability testing</p></div>
-          <div><p className="stat-label">Participants</p><p>~19 across analysts, bankers, investors</p></div>
-        </div>
-
-        <div className="case-study-stack">
-          <section>
-            <h3 className="section-heading">Problem</h3>
-            <p>
-              Account opening required navigating multiple disconnected systems,
-              duplicating information, and coordinating across roles with
-              unclear ownership. This created delays, inefficiencies, and risk,
-              especially as new requirements like IM pre-acceptance were
-              introduced.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">My Approach</h3>
-            <p>
-              I structured the research across three iterative phases to both
-              understand the current state and shape the future experience:
-            </p>
-            <ul className="bullet-list">
-              <li><strong>Phase 1 – Foundational:</strong> Understand current workflows, pain points, and mental models.</li>
-              <li><strong>Phase 2 – Guerilla:</strong> Rapidly test concepts and refine direction.</li>
-              <li><strong>Phase 3 – Usability:</strong> Validate end-to-end flows before launch.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">What I Learned Across Phases</h3>
-            <ul className="bullet-list">
-              <li><strong>Workflows were fragmented and redundant.</strong> Users repeatedly entered the same data across systems, creating friction and inefficiency.</li>
-              <li><strong>Attestations lacked clear ownership.</strong> While analysts often completed them, responsibility across roles was ambiguous.</li>
-              <li><strong>Email, not internal tools, was the real system of action.</strong> Senior stakeholders relied almost entirely on email to complete approvals.</li>
-              <li><strong>Speed versus control was a constant tension.</strong> Adding approvals increased risk coverage but also slowed down account opening.</li>
-              <li><strong>Users were willing to change behavior if it saved time.</strong> Earlier data collection was acceptable when it reduced downstream back-and-forth.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Key Design Decisions Influenced</h3>
-            <ul className="bullet-list">
-              <li><strong>Centralized attestations</strong> into a single location to reduce fragmentation.</li>
-              <li><strong>Enabled parallel workflows</strong> to avoid unnecessary bottlenecks.</li>
-              <li><strong>Pre-filled data</strong> from existing systems to reduce duplication.</li>
-              <li><strong>Email-first interactions</strong> for approvals, aligning the experience to real user behavior.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Impact</h3>
-            <p>
-              This research directly shaped product and design decisions across
-              multiple sprints, resulting in a more efficient and scalable
-              workflow aligned with how users actually work, not how we assumed
-              they did.
-            </p>
-            <p>
-              The updated experience was featured in the JP Morgan Private Bank
-              Town Hall, where it was highlighted that the process was reduced
-              from <strong>1.2 days to just 4 hours</strong>.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">What I&apos;d Do Next</h3>
-            <p>
-              Introduce behavioral analytics to track approval timelines and
-              engagement, and expand research into adjacent pain points, such as
-              mandate tools, that emerged as critical blockers beyond this
-              workflow.
-            </p>
-          </section>
-        </div>
-      </div>
-    </section>
-  );
-
-  const renderCaseStudy3 = () => (
-    <section className="case-study-section">
-      <div className="subnav">
-        <button type="button" onClick={() => setPage("home")} className="subnav-link">
-          ← Back to portfolio
-        </button>
-        <button type="button" onClick={() => setPage("resume")} className="subnav-link">
-          About
-        </button>
-      </div>
-
-      <div className="case-study-shell">
-        <p className="case-study-label">Case Study</p>
-        <h2 className="case-study-title">Swaydle Discovery Research</h2>
-        <p className="case-study-intro">
-          Co-founded and led UX for a startup focused on helping families travel
-          more easily by renting baby gear at their destination.
-        </p>
-
-        <div className="stats-grid">
-          <div><p className="stat-label">Role</p><p>Co-founder &amp; UX Lead</p></div>
-          <div><p className="stat-label">Methods</p><p>Survey, competitive analysis, personas, MVP, analytics</p></div>
-          <div><p className="stat-label">Timeline</p><p>~6 months</p></div>
-        </div>
-
-        <div className="case-study-stack">
-          <section>
-            <h3 className="section-heading">Problem</h3>
-            <p>
-              Traveling with babies is logistically difficult due to the volume
-              of gear required. Many parents feel inhibited from traveling
-              altogether because transporting items like cribs, car seats, and
-              strollers is cumbersome and stressful.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Research &amp; Validation</h3>
-            <p>
-              I designed and distributed a survey to validate the problem and
-              understand user needs. Ninety-four parents across the U.S.
-              participated.
-            </p>
-            <div className="image-grid">
-              <figure className="image-card">
-                <img src="/images/survey-usage.png" alt="Pie chart showing only 10% of parents had used baby gear rental services" className="responsive-image" />
-              </figure>
-              <figure className="image-card">
-                <img src="/images/survey-interest.png" alt="Pie chart showing most parents were interested in a baby gear rental service" className="responsive-image" />
-              </figure>
-            </div>
-            <ul className="bullet-list">
-              <li>Only ~10% had used a rental service before</li>
-              <li>~2/3 said they would be interested in renting baby gear while traveling</li>
-            </ul>
-            <p>
-              This confirmed both demand and an opportunity to differentiate on
-              experience.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Competitive Insights</h3>
-            <p>
-              Existing services were fragmented and often required manual
-              coordination through calls or emails, had poor UX, and lacked
-              trust signals like quality assurance.
-            </p>
-            <ul className="bullet-list">
-              <li>Low usability and outdated design</li>
-              <li>Inconvenient booking processes</li>
-              <li>Lack of high-quality inventory</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Design Strategy</h3>
-            <p>Based on research, we prioritized a seamless, digital-first experience:</p>
-            <ul className="bullet-list">
-              <li>Online scheduling without calls or emails</li>
-              <li>Delivery and pickup included</li>
-              <li>High-quality, brand-name products</li>
-              <li>Clear availability and timing</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">User Journey &amp; Prototype</h3>
-            <p>
-              I mapped both the customer journey and backend service flow to
-              ensure feasibility and usability. This dual perspective helped
-              align operations with experience design.
-            </p>
-            <div className="image-grid">
-              <div className="placeholder-image">Journey map image</div>
-              <div className="placeholder-image">Prototype screens</div>
-            </div>
-          </section>
-
-          <section>
-            <h3 className="section-heading">MVP &amp; Learnings</h3>
-            <p>
-              Instead of traditional prototyping, we launched an MVP to
-              simultaneously test usability, validate demand, and gather
-              behavioral data.
-            </p>
-            <ul className="bullet-list">
-              <li>Users were unclear about service locations</li>
-              <li>Timing expectations for delivery were confusing</li>
-              <li>Limited inventory reduced conversions</li>
-              <li>Mobile traffic was high, but conversions skewed desktop</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Personas</h3>
-            <p>
-              We identified three core user types: traveling parents,
-              convenience-driven planners, and grandparents preparing for
-              visits. Each had different motivations but shared a desire for
-              ease and trust.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Impact</h3>
-            <p>
-              This work validated market demand, shaped the product strategy,
-              and demonstrated how UX can directly influence business viability
-              in early-stage startups.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="section-heading">Post-Mortem</h3>
-            <p>
-              In retrospect, the biggest constraint was technology. Using a
-              limited platform restricted our ability to build key features.
-            </p>
-            <ul className="bullet-list">
-              <li>We launched before the tech stack could support our vision</li>
-              <li>Skipping early prototyping increased downstream risk</li>
-              <li>Better tooling decisions could have improved success</li>
-            </ul>
-            <p>
-              This experience reinforced the importance of aligning product
-              ambition with technical feasibility.
-            </p>
-          </section>
-        </div>
-      </div>
-    </section>
-  );
-
   const renderResume = () => (
-    <section className="case-study-section">
-      <div className="subnav">
-        <button type="button" onClick={() => setPage("home")} className="subnav-link">
-          ← Back to work
-        </button>
-        <button type="button" onClick={() => setPage("case-study-ai")} className="subnav-link">
-          Featured case study
-        </button>
-      </div>
+    <section className="pageSection">
+      <div className="container narrow">
+        <div className="subnav">
+          <button type="button" className="textLink" onClick={() => setPage("home")}>
+            ← Back to work
+          </button>
+        </div>
 
-      <div className="case-study-shell">
-        <p className="case-study-label">About</p>
-        <h2 className="case-study-title">Melissa Russell Paige</h2>
-        <p className="case-study-intro">
-          I am a UX research leader with experience spanning internal
-          platforms, financial services, consulting, and startups. My work
-          focuses on turning ambiguity into clear product direction through
-          thoughtful research, strong cross-functional collaboration, and
-          compelling storytelling.
+        <p className="eyebrow">About</p>
+        <h2 className="pageTitle">Melissa Russell Paige</h2>
+        <p className="lead">
+          I am a UX research leader with experience spanning internal platforms,
+          financial services, consulting, and startups. My work focuses on turning
+          ambiguity into clear product direction through thoughtful research, strong
+          cross-functional collaboration, and compelling storytelling.
         </p>
 
-        <div className="card">
-          <h3 className="section-heading">Resume highlights</h3>
-          <div className="resume-stack">
+        <div className="panel leftAlign">
+          <h3>Resume highlights</h3>
+
+          <div className="resumeStack">
             <div>
-              <p className="resume-role">JP Morgan Chase &amp; Co. — VP, Product Insights</p>
-              <p className="resume-date">October 2025 – Present</p>
+              <p className="jobTitle">JP Morgan Chase &amp; Co. — VP, Product Insights</p>
+              <p className="muted">October 2025 – Present</p>
               <p>
                 Lead and grow a multidisciplinary research and design team across
                 complex internal platforms, embedding user insights into product
                 strategy and executive decision making.
               </p>
             </div>
+
             <div>
-              <p className="resume-role">JP Morgan Chase &amp; Co. — VP UX Research Manager</p>
-              <p className="resume-date">March 2021 – September 2025</p>
+              <p className="jobTitle">JP Morgan Chase &amp; Co. — VP UX Research Manager</p>
+              <p className="muted">March 2021 – September 2025</p>
               <p>
                 Drove high-impact research initiatives that improved internal
-                workflows, contributed to award-winning user experience, and
-                saved 8,000+ hours annually.
+                workflows, contributed to award-winning user experience, and saved
+                8,000+ hours annually.
               </p>
             </div>
+
             <div>
-              <p className="resume-role">Create NYC — Design Researcher</p>
-              <p className="resume-date">December 2017 – March 2021</p>
+              <p className="jobTitle">Create NYC — Design Researcher</p>
+              <p className="muted">December 2017 – March 2021</p>
               <p>
-                Interfaced with clients, conducted design and interactive
-                research, and partnered with strategy, copy, and design teams to
-                improve end-user experiences.
+                Interfaced with clients, conducted design and interactive research,
+                and partnered with strategy, copy, and design teams to improve end-user
+                experiences.
               </p>
             </div>
           </div>
 
-          <div className="resume-note">
-            Add your resume PDF link here when you are ready to publish the site.
-          </div>
-
-          <div className="contact-row">
-            <a href="mailto:mrussellpaige@gmail.com?subject=Inquiry%20about%20UX%20Research%20Role" className="secondary-button">
+          <div className="contactRow">
+            <a
+              className="secondaryButton"
+              href="mailto:mrussellpaige@gmail.com?subject=Inquiry%20about%20UX%20Research%20Role"
+            >
               Contact Me
             </a>
-            <a href="https://www.linkedin.com/in/melissapaige1" target="_blank" rel="noopener noreferrer" className="secondary-button secondary-button-light">
+            <a
+              className="secondaryButton light"
+              href="https://www.linkedin.com/in/melissapaige1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>
           </div>
@@ -569,67 +264,197 @@ export default function App() {
     </section>
   );
 
-  return (
-    <div className="site-shell">
-      <div className="site-inner">
-        <header className="hero">
-          <div className="topbar">
-            <button type="button" onClick={() => setPage("home")} className="brand-button">
-              Melissa Russell Paige
-            </button>
-            <nav className="topnav">
-              <button type="button" onClick={() => setPage("home")} className={page === "home" ? "topnav-link topnav-link-active" : "topnav-link"}>
-                Work
-              </button>
-              <button type="button" onClick={() => setPage("resume")} className={page === "resume" ? "topnav-link topnav-link-active" : "topnav-link"}>
-                About
-              </button>
-            </nav>
-          </div>
+  const renderCaseStudyAI = () => (
+    <section className="pageSection">
+      <div className="container narrow">
+        <BackNav onHome={() => setPage("home")} onAbout={() => setPage("resume")} />
+        <p className="eyebrow">Case Study</p>
+        <h2 className="pageTitle">AI-Powered Client Reporting</h2>
+        <p className="lead">
+          End-to-end user research to explore how AI can improve financial advisor
+          report generation and client conversations.
+        </p>
 
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <h1 className="hero-title">Hello! I&apos;m Melissa.</h1>
-              <p className="hero-text">
-                I am curious about how people move through experiences where
-                digital and physical spaces intersect. So after many years
-                working in advertising and running my own startup, I decided to
-                take that curiosity and transition my career to UX research.
-              </p>
-              <p className="hero-text">
-                <strong>With over a decade of experience</strong>, I bring a
-                strategic, end-to-end perspective to understanding users and
-                shaping meaningful product experiences.
-              </p>
-              <button type="button" onClick={() => setPage("resume")} className="primary-outline-button">
-                Learn More
-              </button>
-            </div>
+        <div className="statsGrid">
+          <div><p className="statLabel">Role</p><p>UX Researcher</p></div>
+          <div><p className="statLabel">Methods</p><p>Moderated interviews, concept testing</p></div>
+          <div><p className="statLabel">Participants</p><p>6 advisors across roles and usage levels</p></div>
+        </div>
 
-            <div className="hero-image-wrap">
-              <div className="hero-image-frame">
-                <img src="/melissa-hero.jpg" alt="Melissa Russell Paige with team" className="hero-image" />
-                <svg className="hero-arrow" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-                  <path d="M20 20 C 120 0, 120 140, 100 160" stroke="#F59E0B" strokeWidth="6" strokeLinecap="round" />
-                  <polygon points="95,150 110,165 90,165" fill="#F59E0B" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <main>
-          {page === "home" && renderHome()}
-          {page === "case-study-ai" && renderCaseStudyAI()}
-          {page === "case-study-attestations" && renderCaseStudyAttestations()}
-          {page === "case-study-3" && renderCaseStudy3()}
-          {page === "resume" && renderResume()}
-        </main>
-
-        <footer className="footer">
-          <p>© Melissa Russell Paige</p>
-        </footer>
+        <div className="contentStack">
+          <section><h3>Problem</h3><p>Financial advisors rely on client review reports to prepare for meetings, but the process is time-consuming, inflexible, and difficult to tailor for complex client scenarios. There was also an open question around how AI could meaningfully support this workflow without reducing trust.</p></section>
+          <section><h3>Goals</h3><ul><li>Understand key pain points in report creation and meetings</li><li>Identify where AI could add value in the workflow</li><li>Determine how AI recommendations should be delivered and explained</li></ul></section>
+          <section><h3>Methods</h3><p>Conducted six moderated 1:1 interviews across analysts, associate bankers, and a VP banker. I tested two low-fidelity concepts to evaluate reactions to AI-driven recommendations, including where recommendations should appear and what information users needed to trust them.</p><div className="imageGrid"><div className="imageCard"><div className="imageLabel">Concept A</div><div className="imagePlaceholder">Add Concept A image here</div></div><div className="imageCard"><div className="imageLabel">Concept B</div><div className="imagePlaceholder">Add Concept B image here</div></div></div></section>
+          <section><h3>Key Insights</h3><ul><li><strong>Core pain points were operational.</strong> Advisors struggled with bugs, limited customization, missing formatting controls, and difficulty handling complex client structures.</li><li><strong>AI was seen as a quality amplifier.</strong> Participants felt AI could help them create stronger, sharper reports and surface more thoughtful talking points for client meetings.</li><li><strong>Trust depended on explainability.</strong> Advisors consistently wanted a clear why behind each recommendation, making transparency critical for adoption.</li><li><strong>Human judgment remained essential.</strong> Some participants wanted to review AI suggestions with a banker before including them, showing that confidence and collaboration were central to adoption.</li></ul></section>
+          <section><h3>Impact</h3><p>This research helped shape product direction by supporting a concept that integrated recommendations into the workflow, rather than presenting them as disconnected AI outputs. It also clarified that personalization needed to account for client data, advisor preferences, prior reports, and internal context.</p></section>
+        </div>
       </div>
+    </section>
+  );
+
+  const renderCaseStudyAttestations = () => (
+    <section className="pageSection">
+      <div className="container narrow">
+        <BackNav onHome={() => setPage("home")} onAbout={() => setPage("resume")} />
+        <p className="eyebrow">Case Study</p>
+        <h2 className="pageTitle">Account Opening End-to-End Workflow Research</h2>
+        <p className="lead">Led a multi-phase research program across discovery, concept validation, and usability testing to redesign a complex account opening workflow used by analysts, bankers, and investors.</p>
+        <div className="statsGrid"><div><p className="statLabel">Role</p><p>UX Research Lead</p></div><div><p className="statLabel">Methods</p><p>Interviews, guerilla testing, usability testing</p></div><div><p className="statLabel">Participants</p><p>~19 across analysts, bankers, investors</p></div></div>
+        <div className="contentStack">
+          <section><h3>Problem</h3><p>Account opening required navigating multiple disconnected systems, duplicating information, and coordinating across roles with unclear ownership. This created delays, inefficiencies, and risk, especially as new requirements like IM pre-acceptance were introduced.</p></section>
+          <section><h3>My Approach</h3><ul><li><strong>Phase 1 – Foundational:</strong> Understand current workflows, pain points, and mental models.</li><li><strong>Phase 2 – Guerilla:</strong> Rapidly test concepts and refine direction.</li><li><strong>Phase 3 – Usability:</strong> Validate end-to-end flows before launch.</li></ul></section>
+          <section><h3>What I Learned Across Phases</h3><ul><li><strong>Workflows were fragmented and redundant.</strong> Users repeatedly entered the same data across systems, creating friction and inefficiency.</li><li><strong>Attestations lacked clear ownership.</strong> While analysts often completed them, responsibility across roles was ambiguous.</li><li><strong>Email, not internal tools, was the real system of action.</strong> Senior stakeholders relied almost entirely on email to complete approvals.</li><li><strong>Speed versus control was a constant tension.</strong> Adding approvals increased risk coverage but also slowed down account opening.</li><li><strong>Users were willing to change behavior if it saved time.</strong> Earlier data collection was acceptable when it reduced downstream back-and-forth.</li></ul></section>
+          <section><h3>Impact</h3><p>This research directly shaped product and design decisions across multiple sprints, resulting in a more efficient and scalable workflow aligned with how users actually work, not how we assumed they did.</p><p>The updated experience was featured in the JP Morgan Private Bank Town Hall, where it was highlighted that the process was reduced from <strong>1.2 days to just 4 hours</strong>.</p></section>
+        </div>
+      </div>
+    </section>
+  );
+
+  const renderCaseStudy3 = () => (
+    <section className="pageSection">
+      <div className="container narrow">
+        <BackNav onHome={() => setPage("home")} onAbout={() => setPage("resume")} />
+        <p className="eyebrow">Case Study</p>
+        <h2 className="pageTitle">Swaydle Discovery Research</h2>
+        <p className="lead">Co-founded and led UX for a startup focused on helping families travel more easily by renting baby gear at their destination.</p>
+        <div className="statsGrid"><div><p className="statLabel">Role</p><p>Co-founder &amp; UX Lead</p></div><div><p className="statLabel">Methods</p><p>Survey, competitive analysis, personas, MVP, analytics</p></div><div><p className="statLabel">Timeline</p><p>~6 months</p></div></div>
+        <div className="contentStack">
+          <section><h3>Problem</h3><p>Traveling with babies is logistically difficult due to the volume of gear required. Many parents feel inhibited from traveling altogether because transporting items like cribs, car seats, and strollers is cumbersome and stressful.</p></section>
+          <section><h3>Research &amp; Validation</h3><p>I designed and distributed a survey to validate the problem and understand user needs. Ninety-four parents across the U.S. participated.</p><div className="imageGrid"><div className="imageCard"><img src="/images/survey-usage.png" alt="Survey usage chart" className="realImage" /></div><div className="imageCard"><img src="/images/survey-interest.png" alt="Survey interest chart" className="realImage" /></div></div><ul><li>Only ~10% had used a rental service before</li><li>~2/3 said they would be interested in renting baby gear while traveling</li></ul></section>
+          <section><h3>Design Strategy</h3><ul><li>Online scheduling without calls or emails</li><li>Delivery and pickup included</li><li>High-quality, brand-name products</li><li>Clear availability and timing</li></ul></section>
+          <section><h3>Post-Mortem</h3><p>In retrospect, the biggest constraint was technology. Using a limited platform restricted our ability to build key features. This experience reinforced the importance of aligning product ambition with technical feasibility.</p></section>
+        </div>
+      </div>
+    </section>
+  );
+
+  if (!authenticated) {
+    return (
+      <div className="siteShell passwordShell">
+        <style>{`
+          * { box-sizing: border-box; }
+          body { margin: 0; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fafaf9; color: #171717; }
+          button, input { font: inherit; }
+          .siteShell { min-height: 100vh; background: #fafaf9; }
+          .passwordShell { display: flex; align-items: center; justify-content: center; padding: 24px; }
+          .passwordCard { width: 100%; max-width: 460px; background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+          .passwordEyebrow { margin: 0 0 10px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #737373; font-weight: 700; }
+          .passwordTitle { margin: 0; font-size: 34px; line-height: 1.05; letter-spacing: -0.03em; }
+          .passwordCopy { margin: 14px 0 0; color: #525252; line-height: 1.7; }
+          .passwordForm { margin-top: 22px; display: grid; gap: 12px; }
+          .passwordInput { width: 100%; border: 1px solid #d4d4d8; border-radius: 14px; padding: 14px 16px; background: #fff; }
+          .unlockButton { width: 100%; border: 0; border-radius: 999px; padding: 14px 18px; background: #171717; color: white; font-weight: 600; cursor: pointer; }
+          .hint { margin-top: 12px; font-size: 14px; color: #737373; }
+        `}</style>
+
+        <div className="passwordCard">
+          <p className="passwordEyebrow">Protected Portfolio</p>
+          <h1 className="passwordTitle">Melissa Russell Paige</h1>
+          <p className="passwordCopy">
+            This portfolio contains private work samples. Enter the password to continue.
+          </p>
+
+          <form className="passwordForm" onSubmit={handleUnlock}>
+            <input
+              className="passwordInput"
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="unlockButton" type="submit">
+              Enter portfolio
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="siteShell">
+      <style>{`
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fafaf9; color: #171717; }
+        button, a { font: inherit; }
+        button { background: none; border: 0; padding: 0; cursor: pointer; }
+        a { color: inherit; text-decoration: none; }
+        .siteShell { min-height: 100vh; background: #fafaf9; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container.narrow { max-width: 820px; }
+        .hero { background: #bbf7d0; padding: 28px 20px 40px; margin-bottom: 32px; }
+        .topbar { max-width: 1100px; margin: 0 auto 32px; display: flex; flex-direction: column; gap: 14px; }
+        .brandButton { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #262626; }
+        .nav { display: flex; flex-wrap: wrap; gap: 16px; }
+        .navLink { font-size: 15px; color: #262626; }
+        .navLink.active, .navLink:hover { text-decoration: underline; text-underline-offset: 4px; }
+        .heroGrid { max-width: 1100px; margin: 0 auto; display: grid; gap: 28px; align-items: center; }
+        .heroCopy h1 { margin: 0; font-size: clamp(36px, 6vw, 56px); line-height: 1.02; letter-spacing: -0.03em; }
+        .heroCopy p { margin: 18px 0 0; font-size: 18px; line-height: 1.7; color: #262626; }
+        .primaryButton { margin-top: 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #262626; padding: 12px 18px; background: transparent; color: #171717; border-radius: 999px; min-width: 140px; }
+        .primaryButton:hover { background: #171717; color: white; }
+        .heroImageWrap { display: flex; justify-content: center; }
+        .heroImageFrame { position: relative; width: 100%; max-width: 400px; }
+        .heroImage { width: 100%; height: 280px; object-fit: cover; border-radius: 18px; display: block; }
+        .heroArrow { position: absolute; top: 12px; left: 20%; width: 140px; transform: translate(-50%, 10%); }
+        .section { max-width: 1100px; margin: 0 auto; padding: 0 20px 32px; }
+        .panel { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+        .panel.leftAlign { text-align: left; }
+        .eyebrow { margin: 0 0 14px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #737373; font-weight: 700; }
+        .sectionHeader h2 { margin: 0; font-size: 30px; letter-spacing: -0.03em; }
+        .sectionHeader p { margin: 8px 0 0; color: #525252; font-size: 17px; }
+        .projectGrid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 24px; }
+        .card { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+        .card h3 { margin: 0 0 12px; font-size: 24px; line-height: 1.2; }
+        .card p { margin: 0 0 12px; color: #525252; line-height: 1.65; }
+        .tagRow { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tagRow.compact { margin-top: 14px; }
+        .tag { display: inline-flex; align-items: center; border-radius: 999px; background: #f5f5f5; border: 1px solid #e5e7eb; padding: 7px 12px; font-size: 13px; color: #404040; }
+        .textLink { color: #171717; text-decoration: underline; text-underline-offset: 4px; }
+        .textLink.strong { margin-top: 18px; display: inline-block; font-weight: 600; }
+        .ctaSection { max-width: 1100px; margin: 20px auto 0; padding: 40px 20px; }
+        .ctaSection > div, .ctaSection > h2, .ctaSection > p, .ctaSection > a { max-width: 1100px; }
+        .ctaSection { background: #171717; color: white; border-radius: 28px; text-align: center; }
+        .ctaSection h2 { margin: 0; font-size: 34px; letter-spacing: -0.03em; }
+        .ctaSection p { margin: 12px auto 0; max-width: 620px; color: #d4d4d4; font-size: 17px; }
+        .ctaButton { display: inline-flex; margin-top: 24px; border-radius: 999px; background: white; color: #171717; padding: 12px 20px; font-weight: 600; }
+        .emailLine { margin-top: 14px; color: #a3a3a3; font-size: 14px; }
+        .pageSection { padding: 48px 0; }
+        .subnav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px; }
+        .pageTitle { margin: 0; font-size: clamp(34px, 5vw, 48px); letter-spacing: -0.03em; line-height: 1.06; }
+        .lead { margin: 14px 0 0; font-size: 18px; line-height: 1.7; color: #525252; }
+        .statsGrid { margin-top: 28px; display: grid; grid-template-columns: 1fr; gap: 14px; background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 20px; }
+        .statLabel { margin: 0 0 6px; font-weight: 700; color: #171717; }
+        .contentStack { display: grid; gap: 28px; margin-top: 28px; }
+        .contentStack section h3 { margin: 0 0 10px; font-size: 24px; }
+        .contentStack section p { margin: 0; color: #404040; line-height: 1.75; font-size: 16px; }
+        .contentStack section ul { margin: 10px 0 0; padding-left: 20px; color: #404040; line-height: 1.75; }
+        .imageGrid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
+        .imageCard { border: 1px solid #e5e7eb; border-radius: 18px; overflow: hidden; background: white; }
+        .imageLabel { padding: 12px 14px; border-bottom: 1px solid #e5e7eb; font-size: 14px; font-weight: 700; }
+        .imagePlaceholder { min-height: 220px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #737373; text-align: center; padding: 20px; }
+        .realImage { width: 100%; display: block; }
+        .resumeStack { display: grid; gap: 22px; margin-top: 18px; }
+        .jobTitle { margin: 0; font-weight: 700; }
+        .muted { color: #737373; margin: 4px 0 8px; }
+        .contactRow { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+        .secondaryButton { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #171717; border-radius: 999px; padding: 11px 16px; }
+        .secondaryButton.light { border-color: #d4d4d4; }
+        @media (min-width: 768px) {
+          .topbar { flex-direction: row; align-items: center; justify-content: space-between; }
+          .heroGrid { grid-template-columns: 1.2fr 0.8fr; }
+          .projectGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .statsGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .imageGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .heroImageWrap { justify-content: flex-end; }
+        }
+      `}</style>
+
+      {page === "home" && renderHome()}
+      {page === "resume" && renderResume()}
+      {page === "case-study-ai" && renderCaseStudyAI()}
+      {page === "case-study-attestations" && renderCaseStudyAttestations()}
+      {page === "case-study-3" && renderCaseStudy3()}
     </div>
   );
 }
