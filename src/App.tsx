@@ -210,7 +210,7 @@ export default function App() {
   );
 
   const renderResume = () => (
-    <section className="pageSection">
+  <section className="pageSection">
       <div className="container narrow">
         <div className="subnav">
           <button type="button" className="textLink" onClick={() => setPage("home")}>
@@ -228,43 +228,30 @@ export default function App() {
         </p>
 
         <div className="panel leftAlign">
-          <h3>Resume highlights</h3>
+          <h3>Resume</h3>
+          <p className="muted">
+            View my full resume below or open it in a new tab.
+          </p>
 
-          <div className="resumeStack">
-            <div>
-              <p className="jobTitle">JP Morgan Chase &amp; Co. — VP, Product Insights</p>
-              <p className="muted">October 2025 – Present</p>
-              <p>
-                Lead and grow a multidisciplinary research and design team across complex
-                internal platforms, embedding user insights into product strategy and
-                executive decision making.
-              </p>
-            </div>
-
-            <div>
-              <p className="jobTitle">JP Morgan Chase &amp; Co. — VP UX Research Manager</p>
-              <p className="muted">March 2021 – September 2025</p>
-              <p>
-                Drove high-impact research initiatives that improved internal workflows,
-                contributed to award-winning user experience, and saved 8,000+ hours
-                annually.
-              </p>
-            </div>
-
-            <div>
-              <p className="jobTitle">Create NYC — Design Researcher</p>
-              <p className="muted">December 2017 – March 2021</p>
-              <p>
-                Interfaced with clients, conducted design and interactive research, and
-                partnered with strategy, copy, and design teams to improve end-user
-                experiences.
-              </p>
-            </div>
+          <div className="resumeEmbed">
+            <iframe
+              src="/melissa-russell-paige-resume.pdf"
+              title="Melissa Russell Paige Resume"
+              className="resumeFrame"
+            />
           </div>
 
           <div className="contactRow">
             <a
               className="secondaryButton"
+              href="/melissa-russell-paige-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Resume
+            </a>
+            <a
+              className="secondaryButton light"
               href="mailto:mrussellpaige@gmail.com?subject=Inquiry%20about%20UX%20Research%20Role"
             >
               Contact Me
@@ -282,7 +269,6 @@ export default function App() {
       </div>
     </section>
   );
-
   const renderCaseStudyAI = () => (
     <section className="pageSection fadeInUp">
       <div className="container narrow">
