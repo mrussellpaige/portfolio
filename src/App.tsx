@@ -651,6 +651,7 @@ export default function App() {
     className="realImage"
   />
 </div>
+              </div>
           </section>
 
           <section>
