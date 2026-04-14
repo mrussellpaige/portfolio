@@ -210,7 +210,7 @@ export default function App() {
   );
 
   const renderResume = () => (
-  <section className="pageSection">
+    <section className="pageSection">
       <div className="container narrow">
         <div className="subnav">
           <button type="button" className="textLink" onClick={() => setPage("home")}>
@@ -229,9 +229,7 @@ export default function App() {
 
         <div className="panel leftAlign">
           <h3>Resume</h3>
-          <p className="muted">
-            View my full resume below or open it in a new tab.
-          </p>
+          <p className="muted">View my full resume below or open it in a new tab.</p>
 
           <div className="resumeEmbed">
             <iframe
@@ -269,6 +267,7 @@ export default function App() {
       </div>
     </section>
   );
+
   const renderCaseStudyAI = () => (
     <section className="pageSection fadeInUp">
       <div className="container narrow">
@@ -644,14 +643,10 @@ export default function App() {
             </p>
             <div className="imageGrid">
               <div className="imageCard">
-  <div className="imageLabel">Competitive landscape</div>
-  <img
-    src="/images/swaydle-competitive-analysis.png"
-    alt="Competitive analysis table"
-    className="realImage"
-  />
-</div>
+                <div className="imageLabel">Competitive landscape</div>
+                <div className="imagePlaceholder">Add competitive analysis table image here</div>
               </div>
+            </div>
           </section>
 
           <section>
@@ -700,20 +695,8 @@ export default function App() {
               the intended experience.
             </p>
             <div className="imageGrid">
-             <div className="imageCard">
-  <img
-    src="/images/swaydle-journey-map.png"
-    alt="User journey map"
-    className="realImage"
-  />
-</div>
-
-<div className="imageCard">
-  <img
-    src="/images/swaydle-prototype.png"
-    alt="Prototype screens"
-    className="realImage"
-  />
+              <div className="imagePlaceholder">Journey map</div>
+              <div className="imagePlaceholder">Prototype screens</div>
             </div>
           </section>
 
@@ -1029,30 +1012,38 @@ export default function App() {
         .resumeStack { display: grid; gap: 22px; margin-top: 18px; }
         .jobTitle { margin: 0; font-weight: 700; }
         .muted { color: #737373; margin: 4px 0 8px; }
-        resumeEmbed { width: 100%; margin-top: 18px; }
-.resumeFrame {
-  width: 100%;
-  height: 900px;
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
-  background: white;
-}
+        .resumeEmbed { width: 100%; margin-top: 18px; }
+        .resumeFrame {
+          width: 100%;
+          height: 900px;
+          border: 1px solid #e5e7eb;
+          border-radius: 18px;
+          background: white;
+        }
         .contactRow { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
         .secondaryButton { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #171717; border-radius: 999px; padding: 11px 16px; transition: transform 220ms ease, background 220ms ease, color 220ms ease; }
         .secondaryButton:hover { transform: translateY(-1px); background: #171717; color: white; }
         .secondaryButton.light { border-color: #d4d4d4; }
         .secondaryButton.light:hover { background: #f5f5f5; color: #171717; }
+
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(14px); }
           to { opacity: 1; transform: translateY(0); }
         }
+
         .fadeInUp { animation: fadeUp 520ms ease both; }
+
         @media (prefers-reduced-motion: reduce) {
-          .fadeInUp, .card, .primaryButton, .ctaButton, .secondaryButton { animation: none !important; transition: none !important; }
+          .fadeInUp, .card, .primaryButton, .ctaButton, .secondaryButton {
+            animation: none !important;
+            transition: none !important;
+          }
         }
+
         @media (max-width: 767px) {
-  .resumeFrame { height: 640px; }
-}
+          .resumeFrame { height: 640px; }
+        }
+
         @media (min-width: 768px) {
           .topbar { flex-direction: row; align-items: center; justify-content: space-between; }
           .heroGrid { grid-template-columns: 1.2fr 0.8fr; }
