@@ -457,4 +457,5 @@ export default function App() {
       {page === "case-study-3" && renderCaseStudy3()}
     </div>
   );
+  
 }
