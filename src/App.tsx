@@ -131,8 +131,7 @@ export default function App() {
             <h1>Hello! I&apos;m Melissa.</h1>
             <p>
               I am curious about how people move through experiences where digital and
-              physical spaces intersect. After years in advertising and running my own
-              startup, I transitioned into UX research.
+              physical spaces intersect.
             </p>
             <p>
               <strong>With over a decade of experience</strong>, I bring a strategic,
