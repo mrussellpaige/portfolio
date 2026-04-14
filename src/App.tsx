@@ -1013,6 +1013,14 @@ export default function App() {
         .resumeStack { display: grid; gap: 22px; margin-top: 18px; }
         .jobTitle { margin: 0; font-weight: 700; }
         .muted { color: #737373; margin: 4px 0 8px; }
+        resumeEmbed { width: 100%; margin-top: 18px; }
+.resumeFrame {
+  width: 100%;
+  height: 900px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: white;
+}
         .contactRow { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
         .secondaryButton { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #171717; border-radius: 999px; padding: 11px 16px; transition: transform 220ms ease, background 220ms ease, color 220ms ease; }
         .secondaryButton:hover { transform: translateY(-1px); background: #171717; color: white; }
@@ -1026,6 +1034,9 @@ export default function App() {
         @media (prefers-reduced-motion: reduce) {
           .fadeInUp, .card, .primaryButton, .ctaButton, .secondaryButton { animation: none !important; transition: none !important; }
         }
+        @media (max-width: 767px) {
+  .resumeFrame { height: 640px; }
+}
         @media (min-width: 768px) {
           .topbar { flex-direction: row; align-items: center; justify-content: space-between; }
           .heroGrid { grid-template-columns: 1.2fr 0.8fr; }
