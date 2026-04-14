@@ -644,10 +644,13 @@ export default function App() {
             </p>
             <div className="imageGrid">
               <div className="imageCard">
-                <div className="imageLabel">Competitive landscape</div>
-                <div className="imagePlaceholder">Add competitive analysis table image here</div>
-              </div>
-            </div>
+  <div className="imageLabel">Competitive landscape</div>
+  <img
+    src="/images/swaydle-competitive-analysis.png"
+    alt="Competitive analysis table"
+    className="realImage"
+  />
+</div>
           </section>
 
           <section>
