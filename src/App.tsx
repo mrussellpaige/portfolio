@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Page =
   | "home"
@@ -68,11 +68,23 @@ export default function App() {
   const [page, setPage] = useState<Page>("home");
   const [password, setPassword] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolio_auth");
+    if (saved === "true") {
+      setAuthenticated(true);
+    }
+  }, []);
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === "research2026") {
       setAuthenticated(true);
+      setError(false);
+      localStorage.setItem("portfolio_auth", "true");
+    } else {
+      setError(true);
     }
   };
 
@@ -360,8 +372,18 @@ export default function App() {
               type="password"
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError(false);
+              }}
             />
+
+            {error && (
+              <div style={{ color: "#dc2626", fontSize: "14px" }}>
+                Incorrect password. Please try again.
+              </div>
+            )}
+
             <button className="unlockButton" type="submit">
               Enter portfolio
             </button>
@@ -457,5 +479,4 @@ export default function App() {
       {page === "case-study-3" && renderCaseStudy3()}
     </div>
   );
-  
 }
