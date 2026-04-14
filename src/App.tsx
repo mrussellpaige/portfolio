@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Page =
   | "home"
@@ -147,7 +147,6 @@ export default function App() {
           <div className="heroImageWrap">
             <div className="heroImageFrame">
               <img src="/melissa-hero.jpg" alt="Melissa Russell Paige" className="heroImage" />
-              
             </div>
           </div>
         </div>
@@ -314,10 +313,11 @@ export default function App() {
           <section>
             <h3>Problem</h3>
             <p>
-              Analysts and lending specialists were spending significant time manually
-              calculating and compiling collateral analytics to determine loan sizes to
-              clients. This was a time intensive process, which limited their ability to
-              focus on higher-value work. fileciteturn4file0
+              Financial advisors rely on client review reports to prepare for meetings,
+              but the process is time-consuming, inflexible, and difficult to tailor for
+              complex client scenarios. Product wanted to explore how AI might support
+              advisors without undermining trust, confidence, or the human judgment that
+              is central to client conversations.
             </p>
           </section>
 
@@ -334,15 +334,12 @@ export default function App() {
           <section>
             <h3>My Approach</h3>
             <p>
-              I partnered closely with product and design to shift focus from feature delivery
-              to measurable workflow outcomes.
+              I framed the work as both discovery and concept evaluation. The research
+              needed to uncover baseline workflow pain points while also assessing early
+              reactions to AI-powered recommendations. I partnered closely with design and
+              product so the findings could immediately shape the next iteration of the
+              experience.
             </p>
-            <ul>
-              <li>Aligned cross-functional teams around user outcomes vs. delivery timelines</li>
-              <li>Defined success metrics tied to real workflow improvements</li>
-              <li>Tested early prototypes to validate usability and mental models</li>
-              <li>Iterated quickly based on research insights</li>
-            </ul>
           </section>
 
           <section>
@@ -379,8 +376,8 @@ export default function App() {
                 difficulty handling complex client structures.
               </li>
               <li>
-                <strong>AI was seen as a quality amplifier.</strong> Participants felt
-                AI could help them create stronger, sharper reports and surface more
+                <strong>AI was seen as a quality amplifier.</strong> Participants felt AI
+                could help them create stronger, sharper reports and surface more
                 thoughtful talking points for client meetings.
               </li>
               <li>
@@ -400,8 +397,8 @@ export default function App() {
           <section>
             <h3>What This Changed</h3>
             <p>
-              The research shifted the conversation away from "should we use AI?" toward
-              "how do we make AI useful, credible, and reviewable?" It reinforced that
+              The research shifted the conversation away from &ldquo;should we use AI?&rdquo; toward
+              &ldquo;how do we make AI useful, credible, and reviewable?&rdquo; It reinforced that
               the winning direction was not a flashy assistant layer, but a
               workflow-integrated experience that preserved advisor control and made
               recommendations feel context-aware and defensible.
@@ -411,13 +408,16 @@ export default function App() {
           <section>
             <h3>Impact</h3>
             <p>
-              The redesigned experience reduced manual effort, improved accuracy, and
-              better aligned with user expectations—leading to faster analysis and
-              stronger confidence in outputs.
+              This research helped shape product direction by supporting a concept that
+              integrated recommendations into the workflow, rather than presenting them as
+              disconnected AI outputs. It also clarified that personalization needed to
+              account for client data, advisor preferences, prior reports, and internal
+              context.
             </p>
             <p>
-              It also shifted the product toward a more scalable, user-centered
-              foundation for future enhancements.
+              More broadly, the work gave stakeholders a clearer decision framework for
+              how to introduce AI into a high-trust financial workflow: explainable,
+              collaborative, and grounded in the advisor&apos;s existing process.
             </p>
           </section>
         </div>
@@ -436,6 +436,7 @@ export default function App() {
           usability testing to redesign a complex account opening workflow used by
           analysts, bankers, and investors.
         </p>
+
         <div className="statsGrid">
           <div>
             <p className="statLabel">Role</p>
@@ -450,6 +451,7 @@ export default function App() {
             <p>~19 across analysts, bankers, investors</p>
           </div>
         </div>
+
         <div className="contentStack">
           <section>
             <h3>Problem</h3>
@@ -596,7 +598,162 @@ export default function App() {
           Co-founded and led UX for a startup focused on helping families travel more
           easily by renting baby gear at their destination.
         </p>
-        {/* existing content unchanged */}
+
+        <div className="statsGrid">
+          <div>
+            <p className="statLabel">Role</p>
+            <p>Co-founder &amp; UX Lead</p>
+          </div>
+          <div>
+            <p className="statLabel">Methods</p>
+            <p>Survey, competitive analysis, MVP, analytics</p>
+          </div>
+          <div>
+            <p className="statLabel">Timeline</p>
+            <p>~6 months</p>
+          </div>
+        </div>
+
+        <div className="contentStack">
+          <section>
+            <h3>Problem</h3>
+            <p>
+              Traveling with babies is logistically difficult due to the volume of gear
+              required. Many parents feel inhibited from traveling because transporting
+              items like cribs, car seats, and strollers is cumbersome and stressful.
+            </p>
+          </section>
+
+          <section>
+            <h3>Research &amp; Validation</h3>
+            <p>
+              I designed and distributed a survey to validate the problem and understand
+              user needs. 94 parents participated across the U.S.
+            </p>
+            <ul>
+              <li>Only ~10% had used a rental service before</li>
+              <li>~2/3 expressed interest in renting baby gear while traveling</li>
+            </ul>
+            <p>
+              This confirmed both demand and a clear opportunity to improve the
+              experience.
+            </p>
+
+            <div className="imageGrid">
+              <div className="imageCard">
+                <img src="/images/survey-usage.png" alt="Usage chart" className="realImage" />
+              </div>
+              <div className="imageCard">
+                <img src="/images/survey-interest.png" alt="Interest chart" className="realImage" />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Competitive Analysis</h3>
+            <p>
+              Existing services were fragmented and required manual coordination via calls
+              or emails. Experiences were often outdated, lacked trust signals, and made
+              it difficult for users to understand availability or pricing.
+            </p>
+            <div className="imageGrid">
+              <div className="imageCard">
+                <div className="imageLabel">Competitive landscape</div>
+                <div className="imagePlaceholder">Add competitive analysis table image here</div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Analytics &amp; Behavioral Insights</h3>
+            <p>
+              Through the MVP, we captured early behavioral data to complement qualitative
+              insights. This helped validate not just what users said, but how they
+              actually behaved when interacting with the product.
+            </p>
+            <ul>
+              <li><strong>High mobile traffic</strong> but lower conversion compared to desktop</li>
+              <li><strong>Drop-off at availability step</strong> when service areas or timing were unclear</li>
+              <li><strong>Inventory limitations</strong> directly impacted conversion rates</li>
+            </ul>
+            <p>
+              These patterns highlighted that usability alone wasn&apos;t enough—clarity,
+              reliability, and operational depth were critical to driving adoption.
+            </p>
+          </section>
+
+          <section>
+            <h3>What I Learned</h3>
+            <p>
+              Beyond the top-line interest, the research revealed a deeper emotional
+              layer: parents were not only trying to solve logistics, they were trying to
+              reduce the mental load of travel. That shifted the product strategy toward
+              reducing uncertainty and effort at every step, from browsing to delivery.
+            </p>
+          </section>
+
+          <section>
+            <h3>Design Strategy</h3>
+            <ul>
+              <li>Online booking without calls or emails</li>
+              <li>Delivery and pickup included</li>
+              <li>High-quality, brand-name products</li>
+              <li>Clear availability and timing</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>User Journey &amp; Prototype</h3>
+            <p>
+              I mapped both the customer journey and backend service flow to ensure
+              feasibility and usability. This helped align operational constraints with
+              the intended experience.
+            </p>
+            <div className="imageGrid">
+              <div className="imagePlaceholder">Journey map</div>
+              <div className="imagePlaceholder">Prototype screens</div>
+            </div>
+          </section>
+
+          <section>
+            <h3>MVP &amp; Analytics</h3>
+            <p>
+              Instead of relying solely on prototypes, we launched an MVP to validate
+              demand and capture real behavioral data.
+            </p>
+            <ul>
+              <li>Users were unclear about service locations</li>
+              <li>Delivery timing expectations were confusing</li>
+              <li>Limited inventory reduced conversions</li>
+              <li>Mobile traffic was high, but conversions skewed desktop</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Impact</h3>
+            <p>
+              This work validated market demand, shaped the product strategy, and
+              demonstrated how UX research can directly inform business viability in an
+              early-stage startup.
+            </p>
+          </section>
+
+          <section>
+            <h3>Post-Mortem</h3>
+            <p>
+              The biggest constraint was technology. The platform limited our ability to
+              build key features and deliver the intended experience.
+            </p>
+            <ul>
+              <li>We launched before the tech stack could fully support the vision</li>
+              <li>Skipping early prototyping increased downstream risk</li>
+              <li>Better tooling decisions could have improved outcomes</li>
+            </ul>
+            <p>
+              This reinforced the <strong>importance of aligning product ambition with technical feasibility</strong>.
+            </p>
+          </section>
+        </div>
       </div>
     </section>
   );
@@ -608,7 +765,8 @@ export default function App() {
         <p className="eyebrow">Case Study</p>
         <h2 className="pageTitle">Lending Wizard: Automation and Mental Models</h2>
         <p className="lead">
-          Research and design partnership to transform complex lending analyses into a faster, more intuitive experience.
+          Research and design partnership to transform complex lending analyses into a
+          faster, more intuitive experience.
         </p>
 
         <div className="statsGrid">
@@ -630,19 +788,29 @@ export default function App() {
           <section>
             <h3>Problem</h3>
             <p>
-              Analysts and lending specialists were spending significant time manually calculating and compiling collateral analytics to determine loan sizes to clients. This was a time intensive process, which limited their ability to focus on higher-value work.
+              Analysts and lending specialists were spending significant time manually
+              calculating and compiling collateral analytics to determine loan sizes to
+              clients. This was a time intensive process, which limited their ability to
+              focus on higher-value work.
             </p>
           </section>
 
           <section>
             <h3>Opportunity</h3>
             <p>
-              The team saw an opportunity to create a simple tool for these collateral analyses, which would accelerate turnaround time, reduce the need for lending specialists to get involved, and improve both advisor and client experience with automated documents.
+              The team saw an opportunity to create a simple tool for these collateral
+              analyses, which would accelerate turnaround time, reduce the need for
+              lending specialists to get involved, and improve both advisor and client
+              experience with automated documents.
             </p>
           </section>
 
           <section>
             <h3>My Approach</h3>
+            <p>
+              I partnered closely with product and design to shift focus from feature
+              delivery to measurable workflow outcomes.
+            </p>
             <ul>
               <li>Aligned cross-functional teams around user outcomes vs. delivery timelines</li>
               <li>Defined success metrics tied to real workflow improvements</li>
@@ -677,14 +845,14 @@ export default function App() {
           <section>
             <h3>Product Direction Shift</h3>
             <p>
-              <strong>Based on findings, the team pivoted</strong> from a fragmented, screen-based experience
-              to a guided, workflow-driven model that better reflected how users actually
-              perform lending analysis.
+              <strong>Based on findings, the team pivoted</strong> from a fragmented,
+              screen-based experience to a guided, workflow-driven model that better
+              reflected how users actually perform lending analysis.
             </p>
             <p>
-              A key tension in this work was balancing speed with risk. While automation could
-              reduce manual effort, the experience still needed to support careful review and
-              maintain confidence in outputs.
+              A key tension in this work was balancing speed with risk. While automation
+              could reduce manual effort, the experience still needed to support careful
+              review and maintain confidence in outputs.
             </p>
           </section>
 
@@ -715,7 +883,7 @@ export default function App() {
               stronger confidence in outputs.
             </p>
             <p>
-              In the first year after launch, <strong>Lending Wizard saved just under 9,000 hours across 1,781 users.</strong>
+              <strong>Lending Wizard saved just under 9,000 hours across 1,781 users in its first year after launch.</strong>
             </p>
             <p>
               It also shifted the product toward a more scalable, user-centered
@@ -726,7 +894,7 @@ export default function App() {
           <section>
             <h3>What I Learned</h3>
             <p>
-              Even well-intentioned solutions can fail <strong>if they don’t align with user mental models</strong>. Iterative research was critical in identifying where the
+              Even well-intentioned solutions can fail <strong>if they don&apos;t align with user mental models</strong>. Iterative research was critical in identifying where the
               experience broke down and ensuring each redesign step moved closer to how
               users actually think and work.
             </p>
@@ -818,7 +986,6 @@ export default function App() {
         .heroImageWrap { display: flex; justify-content: center; }
         .heroImageFrame { position: relative; width: 100%; max-width: 400px; }
         .heroImage { width: 100%; height: 280px; object-fit: cover; border-radius: 18px; display: block; }
-        .heroArrow { position: absolute; top: 12px; left: 20%; width: 140px; transform: translate(-50%, 10%); }
         .section { max-width: 1100px; margin: 0 auto; padding: 0 20px 32px; }
         .panel { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
         .panel.leftAlign { text-align: left; }
@@ -855,7 +1022,7 @@ export default function App() {
         .imageGrid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
         .imageCard { border: 1px solid #e5e7eb; border-radius: 18px; overflow: hidden; background: white; }
         .imageLabel { padding: 12px 14px; border-bottom: 1px solid #e5e7eb; font-size: 14px; font-weight: 700; }
-        .imagePlaceholder { min-height: 220px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #737373; text-align: center; padding: 20px; }
+        .imagePlaceholder { min-height: 220px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #737373; text-align: center; padding: 20px; border-radius: 18px; }
         .realImage { width: 100%; display: block; }
         .resumeStack { display: grid; gap: 22px; margin-top: 18px; }
         .jobTitle { margin: 0; font-weight: 700; }
