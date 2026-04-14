@@ -699,8 +699,20 @@ export default function App() {
               the intended experience.
             </p>
             <div className="imageGrid">
-              <div className="imagePlaceholder">Journey map</div>
-              <div className="imagePlaceholder">Prototype screens</div>
+             <div className="imageCard">
+  <img
+    src="/images/swaydle-journey-map.png"
+    alt="User journey map"
+    className="realImage"
+  />
+</div>
+
+<div className="imageCard">
+  <img
+    src="/images/swaydle-prototype.png"
+    alt="Prototype screens"
+    className="realImage"
+  />
             </div>
           </section>
 
