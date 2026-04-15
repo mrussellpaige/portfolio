@@ -72,6 +72,8 @@ a { color: inherit; text-decoration: none; }
 .responsive-image { display: block; width: 100%; height: auto; }
 .resume-stack { display: grid; gap: 1.5rem; margin-top: 1.5rem; color: #404040; }
 .resume-role { margin: 0; font-weight: 600; color: #171717; }
+.aboutResumePanel {
+  margin-top: 48px;}
 .resume-date { margin: 0.25rem 0 0.5rem; }
 .resume-note { margin-top: 1.5rem; border: 1px dashed #d4d4d4; border-radius: 1rem; padding: 1rem; font-size: 0.92rem; }
 .secondary-button { display: inline-flex; align-items: center; border: 1px solid #171717; padding: 0.7rem 1.2rem; font-size: 0.95rem; transition: all 0.2s ease; }
