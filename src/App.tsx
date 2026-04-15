@@ -745,7 +745,7 @@ export default function App() {
           </section>
 
           <section>
-            <h3>Post-Mortem</h3>
+            <h3>Reflection</h3>
             <p>
               The biggest constraint was technology. The platform limited our ability to
               build key features and deliver the intended experience.
