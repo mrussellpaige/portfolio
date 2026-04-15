@@ -130,10 +130,6 @@ export default function App() {
           <div className="heroCopy">
             <h1>Hello! I&apos;m Melissa.</h1>
             <p>
-              I am curious about how people move through experiences where digital and
-              physical spaces intersect.
-            </p>
-            <p>
               <strong>With over a decade of experience</strong>, I bring a strategic,
               end-to-end perspective to understanding users and shaping meaningful
               product experiences.
