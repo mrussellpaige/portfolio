@@ -335,14 +335,23 @@ export default function App() {
               what information users needed to trust them.
             </p>
             <div className="imageGrid">
-              <div className="imageCard">
-                <div className="imageLabel">Concept A</div>
-                <div className="imagePlaceholder">Add Concept A image here</div>
-              </div>
-              <div className="imageCard">
-                <div className="imageLabel">Concept B</div>
-                <div className="imagePlaceholder">Add Concept B image here</div>
-              </div>
+             <div className="imageCard">
+  <div className="imageLabel">Concept A</div>
+  <img
+    src="/images/ai-reporting-concept-a.png"
+    alt="AI reporting concept A"
+    className="realImage"
+  />
+</div>
+
+<div className="imageCard">
+  <div className="imageLabel">Concept B</div>
+  <img
+    src="/images/ai-reporting-concept-b.png"
+    alt="AI reporting concept B"
+    className="realImage"
+  />
+</div>
             </div>
             <p>
               These concepts helped probe not just preference, but the mental model behind
