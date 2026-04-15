@@ -227,7 +227,6 @@ export default function App() {
         </p>
 
         <div className="panel leftAlign">
-          <h3>Resume</h3>
           <p className="muted">View my full resume below or open it in a new tab.</p>
 
           <div className="resumeEmbed">
