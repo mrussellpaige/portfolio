@@ -991,7 +991,7 @@ export default function App() {
         .primaryButton:hover { background: #171717; color: white; transform: translateY(-1px); }
         .heroImageWrap { display: flex; justify-content: center; }
         .heroImageFrame { position: relative; width: 100%; max-width: 400px; }
-        .heroImage { width: 100%; height: 360px; object-fit: cover; border-radius: 18px; display: block; }
+        .heroImage { width: 100%; height: 380px; object-fit: cover; border-radius: 18px; display: block; }
         .section { max-width: 1100px; margin: 0 auto; padding: 0 20px 32px; }
         .panel { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
         .panel.leftAlign { text-align: left; }
