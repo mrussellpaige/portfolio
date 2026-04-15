@@ -649,11 +649,14 @@ export default function App() {
               or emails. Experiences were often outdated, lacked trust signals, and made
               it difficult for users to understand availability or pricing.
             </p>
-            <div className="imageGrid">
-              <div className="imageCard">
-                <div className="imageLabel">Competitive landscape</div>
-                <div className="imagePlaceholder">Add competitive analysis table image here</div>
-              </div>
+           <div className="imageCard">
+  <div className="imageLabel">Competitive landscape</div>
+  <img
+    src="/images/swaydle-competitive-analysis.png"
+    alt="Competitive analysis table"
+    className="realImage"
+  />
+</div>
             </div>
           </section>
 
@@ -703,8 +706,21 @@ export default function App() {
               the intended experience.
             </p>
             <div className="imageGrid">
-              <div className="imagePlaceholder">Journey map</div>
-              <div className="imagePlaceholder">Prototype screens</div>
+              <div className="imageCard">
+  <img
+    src="/images/swaydle-journey-map.png"
+    alt="User journey map"
+    className="realImage"
+  />
+</div>
+
+<div className="imageCard">
+  <img
+    src="/images/swaydle-prototype.png"
+    alt="Prototype screens"
+    className="realImage"
+  />
+</div>
             </div>
           </section>
 
