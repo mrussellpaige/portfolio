@@ -642,23 +642,24 @@ export default function App() {
             </div>
           </section>
 
-          <section>
-            <h3>Competitive Analysis</h3>
-            <p>
-              Existing services were fragmented and required manual coordination via calls
-              or emails. Experiences were often outdated, lacked trust signals, and made
-              it difficult for users to understand availability or pricing.
-            </p>
-           <div className="imageCard">
-  <div className="imageLabel">Competitive landscape</div>
-  <img
-    src="/images/swaydle-competitive-analysis.png"
-    alt="Competitive analysis table"
-    className="realImage"
-  />
-</div>
-            </div>
-          </section>
+         <section>
+  <h3>Competitive Analysis</h3>
+  <p>
+    Existing services were fragmented and required manual coordination via calls
+    or emails. Experiences were often outdated, lacked trust signals, and made
+    it difficult for users to understand availability or pricing.
+  </p>
+  <div className="imageGrid">
+    <div className="imageCard">
+      <div className="imageLabel">Competitive landscape</div>
+      <img
+        src="/images/swaydle-competitive-analysis.png"
+        alt="Competitive analysis table"
+        className="realImage"
+      />
+    </div>
+  </div>
+</section>
 
           <section>
             <h3>Analytics &amp; Behavioral Insights</h3>
