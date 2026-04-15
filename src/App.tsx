@@ -226,8 +226,8 @@ export default function App() {
           cross-functional collaboration, and compelling storytelling.
         </p>
 
-        <div className="panel leftAlign">
-          <p className="muted">View my full resume below or open it in a new tab.</p>
+<div className="panel leftAlign aboutResumePanel">
+  <p className="muted">View my full resume below or open it in a new tab.</p>
 
           <div className="resumeEmbed">
             <iframe
