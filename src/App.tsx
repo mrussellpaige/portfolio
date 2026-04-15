@@ -642,7 +642,7 @@ export default function App() {
             </div>
           </section>
 
-         <section>
+ <section>
   <h3>Competitive Analysis</h3>
   <p>
     Existing services were fragmented and required manual coordination via calls
@@ -660,7 +660,6 @@ export default function App() {
     </div>
   </div>
 </section>
-
           <section>
             <h3>Analytics &amp; Behavioral Insights</h3>
             <p>
@@ -713,7 +712,6 @@ export default function App() {
         className="realImage"
       />
     </div>
-
     <div className="imageCard">
       <img
         src="/images/swaydle-prototype.png"
@@ -723,7 +721,6 @@ export default function App() {
     </div>
   </div>
 </section>
-
           <section>
             <h3>MVP &amp; Analytics</h3>
             <p>
