@@ -876,7 +876,7 @@ export default function App() {
           </section>
 
           <section>
-            <h3>What I Learned</h3>
+            <h3>Reflection</h3>
             <p>
               Even well-intentioned solutions can fail <strong>if they don&apos;t align with user mental models</strong>. Iterative research was critical in identifying where the
               experience broke down and ensuring each redesign step moved closer to how
